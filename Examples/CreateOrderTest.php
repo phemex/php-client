@@ -1,33 +1,21 @@
-# php-client
-Phemex PHP Client SDK
+<?php
 
-Prepare
-
-```
-1.Clone the code locally
-2.Replace your ProdApiKey and ProdSecret in "your project/Configs/NormalConfigs.php"
-```
-
-
-Getting started
-
-```php
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../php-phemex-api.php';
 require __DIR__ . '/../Configs/NormalConfigs.php';
-```
-```php
+
 // reload configs
-$pref_url   = \Phemex\Configs\NormalConfigs::ProdPrefUrl;
-$api_key    = \Phemex\Configs\NormalConfigs::ProdApiKey;
-$secret     = \Phemex\Configs\NormalConfigs::ProdSecret;
-```
-```php
-// create new Phemex API
+//$pref_url   = \Phemex\Configs\NormalConfigs::ProdPrefUrl;
+//$api_key    = \Phemex\Configs\NormalConfigs::ProdApiKey;
+//$secret     = \Phemex\Configs\NormalConfigs::ProdSecret;
+
+$pref_url   = \Phemex\Configs\NormalConfigs::TestnetPrefUrl;
+$api_key    = \Phemex\Configs\NormalConfigs::TestnetApiKey;
+$secret     = \Phemex\Configs\NormalConfigs::TestnetSecret;
+
+
 $api = new \Phemex\Api($api_key, $secret, $pref_url);
-```
-```php
-// stitching parameters
+
 $path = '/orders';
 $body = [
     'actionBy'      => 'FromOrderPlacement',
@@ -44,13 +32,10 @@ $body = [
     'takeProfitEp'  => 0,
     'stopLossEp'    => 0
 ];
-```
-```php
-// send request and echo the results, or catch the exceptions
+
+// send reques
 try {
     var_dump($api->createOrder($path, $body));
 } catch (\Exception $e) {
     echo "Something error, code : {$e->getCode()}, message : {$e->getMessage()}";
 }
-```
-
